@@ -2,14 +2,14 @@ Attribute VB_Name = "Module1"
 Sub MailSystem()
 
 
-Dim address, shA, shB, sign As Worksheet
-Set address = ThisWorkbook.Sheets("‘—Mæ")
-Set sign = ThisWorkbook.Sheets("–¼")
+Dim address, sign As Worksheet
+Set address = ThisWorkbook.Sheets("é€ä¿¡å…ˆ")
+Set sign = ThisWorkbook.Sheets("ç½²å")
 
-'–¼•”•ª‚ğì¬
+'ç½²åéƒ¨åˆ†ã‚’ä½œæˆ
 'Dim signcontents As String
 'Dim signlastr As Integer
-'signlastr = sign.Cells(Rows.Count, 2).End(xlUp).Row '–¼ƒV[ƒg‚ÌÅIs‚ğæ“¾
+'signlastr = sign.Cells(Rows.Count, 2).End(xlUp).Row 'ç½²åã‚·ãƒ¼ãƒˆã®æœ€çµ‚è¡Œã‚’å–å¾—
 '
 'Call signcreate(signlastr)
 
@@ -17,29 +17,28 @@ Set sign = ThisWorkbook.Sheets("–¼")
 
 
 
-'‘—Mæ‚Éİ’è‚³‚ê‚Ä‚¢‚é‘ÎÛÒ‚ğã‚©‚ç‡‚Éˆ—
+'é€ä¿¡å…ˆã«è¨­å®šã•ã‚Œã¦ã„ã‚‹å¯¾è±¡è€…ã‚’ä¸Šã‹ã‚‰é †ã«å‡¦ç†
 Dim lastr As Integer
 lastr = address.Cells(Rows.Count, 1).End(xlUp).Row
 
 Dim r As Integer
 Dim sheetname As String
-For r = 2 To lastr  'u‘—Mæv1s–Ú‚©‚çÅŒã‚Ü‚Å
+For r = 2 To lastr  'ã€Œé€ä¿¡å…ˆã€1è¡Œç›®ã‹ã‚‰æœ€å¾Œã¾ã§
     Dim NAME, MA, body As String
     NAME = address.Cells(r, 1).Value
     MA = address.Cells(r, 2).Value
     sheetname = address.Cells(r, 3).Value
     
     
- 'Œ–¼E–{•¶‚Ìİ’è
-    'Œ–¼
+ 'ä»¶åãƒ»æœ¬æ–‡ã®è¨­å®š
+    'ä»¶å
     Dim TITLE, BODIES As String
     TITLE = Sheets(sheetname).Cells(1, 2)
 
-    '–{•¶
+    'æœ¬æ–‡
     Dim sentences() As String
     ReDim sentences(0)
     sentences(0) = Sheets(sheetname).Cells(2, 2)
-
 
     Dim sentencecounter, lastsentence As Integer
     lastsentence = Sheets(sheetname).Cells(Rows.Count, 2).End(xlUp).Row - 1
@@ -54,7 +53,7 @@ For r = 2 To lastr  'u‘—Mæv1s–Ú‚©‚çÅŒã‚Ü‚Å
 
   
 
-    'Outlook—˜—p‚Ì€”õiƒAƒvƒŠ‚ğŠJ‚«AV‚µ‚¢ƒ[ƒ‹‚ğì¬j
+    'Outlookåˆ©ç”¨ã®æº–å‚™ï¼ˆã‚¢ãƒ—ãƒªã‚’é–‹ãã€æ–°ã—ã„ãƒ¡ãƒ¼ãƒ«ã‚’ä½œæˆï¼‰
     Dim objOutlook As Outlook.Application
     Dim objmail As Outlook.MailItem
 
@@ -62,14 +61,17 @@ For r = 2 To lastr  'u‘—Mæv1s–Ú‚©‚çÅŒã‚Ü‚Å
     Set objmail = objOutlook.CreateItem(olMailItem)
 
     With objmail
-     .To = MA  'ˆ¶æ=‘—MæƒV[ƒg‚Ìƒ[ƒ‹ƒAƒhƒŒƒX
+     .To = MA  'å®›å…ˆ=é€ä¿¡å…ˆã‚·ãƒ¼ãƒˆã®ãƒ¡ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹
      .Subject = TITLE
      .body = BODIES
     End With
-    
+    'TESTæ™‚
     objmail.Save
+
+    'é€ä¿¡æ™‚
+    'objmail.Send
     
-Next  'u‘—Mæv1s–Ú‚©‚çÅŒã‚Ü‚ÅiIj
+Next  'ã€Œé€ä¿¡å…ˆã€1è¡Œç›®ã‹ã‚‰æœ€å¾Œã¾ã§ï¼ˆçµ‚ï¼‰
 
 End Sub
 
